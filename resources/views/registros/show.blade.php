@@ -39,13 +39,13 @@
             <div> <b>Análisado por:</b> {{ Uspdev\Replicado\Pessoa::obterNome($registro->codpes_analise) }} </div>
         @endif
 
-        @if ($registro->status == 'análise')
+        @if ($registro->status == 'analise')
             @include('registros.partials.analisar')
         @endif
         <br />
 
         @can('boss')
-            @if($registro->status == 'válido')
+            @if($registro->status == 'valido')
             <form style="display: inline;" method="POST" action="registros/{{ $registro->id }}/invalidate">
                 @csrf
                 @method('PATCH')

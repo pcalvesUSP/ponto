@@ -19,9 +19,19 @@ class CreateRegistrosTable extends Migration
             $table->string('codpes');
             $table->string('type'); // in or out
             $table->string('image');
+            $table->string('status')->default('valido')->change();
+            $table->string('motivo')->nullable();
+            $table->text('justificativa')->nullable();
+            $table->text('analise')->nullable();
+            $table->string('codpes_analise')->nullable();
 
             $table->unsignedBigInteger('place_id');
             $table->foreign('place_id')->references('id')->on('places');
+
+            /*foreach(Registro::all() as $registro){
+                $registro->status = 'válido';
+                $registro->save();
+            }*/
         });
     }
 

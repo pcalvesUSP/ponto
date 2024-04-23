@@ -31,9 +31,11 @@ class PdfController extends Controller
         $in = Carbon::createFromFormat('d/m/Y',$request->in);
         $out = Carbon::createFromFormat('d/m/Y',$request->out);
 
-        $datas = Util::listarDiasUteis($in->format('d/m/Y'), $out->format('d/m/Y'));
+        $util = new Util();
 
-        $computes = Util::compute($codpes, $in, $out);
+        $datas = $util->listarDiasUteis($in->format('d/m/Y'), $out->format('d/m/Y'));
+
+        $computes = $util->compute($codpes, $in, $out);
         
         if(count($computes) > 31) {
             $request->session()->flash('alert-danger',$request->in . ' e ' . $request->out . 
@@ -57,12 +59,13 @@ class PdfController extends Controller
             'dias'     => array_keys($computes),
             'in'       => $request->in,
             'out'      => $request->out,
-            'total'    => Util::computeTotal($computes),
+            'total'    => $util->computeTotal($computes),
             'codpes'             => $codpes,
             'codpes_supervisor'  => $codpes_supervisor,
             'nome'               => $nome,
             'nome_supervisor'    => $nome_supervisor,
             'datas'              => $datas,
+            'util'               => $util
         ]);
 
         return $pdf->download("$codpes.pdf");

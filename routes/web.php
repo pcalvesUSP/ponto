@@ -20,7 +20,9 @@ Route::get('registros/{registro}/picture', [RegistroController::class, 'picture'
 Route::patch('registros/{registro}/', [RegistroController::class, 'update']);
 
 Route::get('places/create', [PlaceController::class,'create']);
+Route::get('place/{place_id}/edit', [PlaceController::class,'edit']);
 Route::post('places', [PlaceController::class,'store']);
+Route::put('places', [PlaceController::class,'update']);
 Route::get('places', [PlaceController::class,'index']);
 
 Route::patch('registros/{registro}/invalidate', [RegistroController::class, 'invalidate']);

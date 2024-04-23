@@ -13,6 +13,12 @@ use Illuminate\Validation\Rule;
 
 class RegistroController extends Controller
 {
+    
+    public function __construct() {
+        if (strpos($_SERVER['REMOTE_ADDR'],'107.6') === false && strpos($_SERVER['REMOTE_ADDR'],'107.7') === false && strpos($_SERVER['REMOTE_ADDR'],'107.9') === false) {
+            return "<script> alert('Equipamento não autorizado ".$_SERVER['REMOTE_ADDR']."'); window.location = 'https://www.fcf.usp.br'; </script>";
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -93,7 +99,7 @@ class RegistroController extends Controller
         $this->authorize('boss');
 
         $registro->fill([
-            'status' => 'inválido'
+            'status' => 'invalido'
         ]);
         $registro->save();
 
@@ -137,7 +143,7 @@ class RegistroController extends Controller
         $registro->place_id = $request->place_id;
         $registro->motivo = $request->motivo;
         $registro->justificativa = $request->justificativa;
-        $registro->status = 'análise';
+        $registro->status = 'analise';
 
         $casos_arquivo = [
             'Consulta Médica',

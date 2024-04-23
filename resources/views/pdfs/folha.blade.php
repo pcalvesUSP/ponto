@@ -74,13 +74,13 @@
 
         @for($i = 0; $i < 16; $i++)
             @if(array_key_exists($i, $dias))  
-                @php $col1 = App\Utils\Util::computeDayMinutes($computes,$dias[$i]) @endphp
+                @php $col1 = $util->computeDayMinutes($computes,$dias[$i]) @endphp
             @else 
                 @php $col1 = ['','',''] @endphp
             @endif
 
             @if(array_key_exists($i+16, $dias))  
-                @php $col2 = App\Utils\Util::computeDayMinutes($computes,$dias[$i+16]) @endphp
+                @php $col2 = $util->computeDayMinutes($computes,$dias[$i+16]) @endphp
             @else 
                 @php $col2 = ['','',''] @endphp
             @endif

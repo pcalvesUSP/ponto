@@ -18,7 +18,7 @@
       <tbody>
         @foreach($places as $place)
         <tr>
-            <td>{{ $place->name }}</td>
+            <td>{{ $place->name }} &nbsp; <a href="/place/{{$place->id}}/edit"><i class="fas fa-pencil-alt" color="#007bff"></i></a></td>
         </tr>
         @endforeach
       </tbody>

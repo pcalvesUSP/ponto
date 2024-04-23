@@ -64,12 +64,19 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        //
+        $this->authorize('admin');
+        $place = Place::find($id);
+        return view('places.create',['places' => $place]);
     }
 
     public function update(PlaceRequest $request, Place $place)
     {
-        //
+        $this->authorize('admin');
+        $place = Place::find($request->place_id);
+        $place->name = $request->name;
+        $place->update();
+        
+        return redirect('/places');
     }
 
     /**

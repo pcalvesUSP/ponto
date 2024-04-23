@@ -1,4 +1,4 @@
-@can('admin')
+@canany(['boss','admin'])
     <br />
     <div class="card">
         <div class="card-header font-weight-bold">
@@ -11,13 +11,13 @@
                 <div class="row">
                     <div class="col-sm">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" value="válido" required>
+                            <input class="form-check-input" type="radio" name="status" value="valido" required>
                             <label class="form-check-label" for="flexRadioDefault1">
                                 <h5><span class="badge bg-success text-light"><i class="fa fa-thumbs-up"></i> Validar</span></h5>
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" value="inválido" required>
+                            <input class="form-check-input" type="radio" name="status" value="invalido" required>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 <h5><span class="badge bg-danger text-light"><i class="fa fa-thumbs-down"></i> Invalidar</span></h5>
                             </label>
@@ -32,7 +32,7 @@
             </form>
         </div>
     </div>
-@endcan
+@endcanany
 
 @section('javascripts_bottom')
     <script>

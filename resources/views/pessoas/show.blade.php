@@ -63,7 +63,7 @@
             @php
               $carga_horaria_semanal = (!App\Models\Grupo::getGroup($pessoa['codpes'])) ? 0 : App\Models\Grupo::getGroup($pessoa['codpes'])->carga_horaria;
               $carga_horaria_diaria = $carga_horaria_semanal / 5;
-              $quantidade_dias_uteis = App\Utils\Util::contarDiasUteis(request()->in, request()->out); 
+              $quantidade_dias_uteis = $util->contarDiasUteis(request()->in, request()->out); 
               $carga_horaria_total = $quantidade_dias_uteis * $carga_horaria_diaria;
               $arrayTotal = (!empty($total)) ? array_map('trim', explode('e', $total)) : [];
               $total_horas = (!empty($arrayTotal)) ? trim(substr($arrayTotal[0], 0, 2)) : 0;
@@ -72,7 +72,7 @@
               $carga_horaria_total_minutos = $carga_horaria_total * 60;
               $total_registrado_minutos = ($total_horas * 60) + $total_minutos;
               $saldo_minutos = $total_registrado_minutos - $carga_horaria_total_minutos;
-              $saldo = App\Utils\Util::formatMinutes(abs($saldo_minutos));
+              $saldo = $util->formatMinutes(abs($saldo_minutos));
             @endphp  
 
             <strong>Carga horária semanal:</strong> {{ $carga_horaria_semanal }} horas<br />
